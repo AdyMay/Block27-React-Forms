@@ -8,11 +8,11 @@ function SignUpForm( setToken ) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(!username || !password){
+        if(!username || !password) {
             alert("please enter a valid username and password");
             return;
         }
-        try{
+        try {
             const res = await fetch("https://fsa-jwt-practice.herokuapp.com/signup", {
             method: "POST",
             body: JSON.stringify({ username, password }),

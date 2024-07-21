@@ -1,6 +1,9 @@
 import React from 'react';
+import React, { useState } from "react";
 
 function Authenticate({ token }) {
+    const [successMessage, setSuccesMessage] = useState(null);
+    const [error, setError] = useState(true);
     const handleClick = async () => {
         try {
             console.log("clicked");
@@ -14,6 +17,9 @@ function Authenticate({ token }) {
             );
         const json = await res.json();
             console.log(json);
+        if (json.success) {
+            setSuccesMessage(json.message);
+        }
         } catch (err) {
             console.log(err);
         }
@@ -21,6 +27,8 @@ function Authenticate({ token }) {
 
   return (
     <>
+        {error & <p>Coule not Authenticate</p>}
+        {successMessage && <p>{}successMessage</p>}
         <h2>Authenticate</h2>;
         <button onClick={handleClick}>Autenticate</button>
     </>
